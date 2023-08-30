@@ -35,5 +35,8 @@ COPY --chown=nextjs:nodejs prisma ./prisma/
 
 USER nextjs
 
-CMD ["npm start"]
+CMD ["/bin/sh","-c","npx prisma migrate deploy && node server.js"]
 
+#  docker network create --driver=bridge app
+#  docker run -itd --network=app -e MYSQL_ROOT_PASSWORD=password -p 3306:3306 --name mysql mysql:latest
+#  docker run -itd --network=app --env-file=.env -p 80:3000 --name discord-clone discord-clone
